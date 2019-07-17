@@ -1,0 +1,96 @@
+method:
+  id: stream
+  name: STREAM
+  source: tool
+  platform: Python
+  url: https://github.com/pinellolab/STREAM
+  authors:
+  - given: Huidong
+    family: Chen
+    email: hd7chen@gmail.com
+    github: huidongchen
+    ORCID: 0000-0003-1391-8198
+  - given: Luca
+    family: Pinello
+    email: LPINELLO@MGH.HARVARD.EDU
+    github: pinellolab
+    ORCID: 0000-0003-1109-3823
+
+manuscript:
+  doi: 10.1038/s41467-019-09670-4
+  google_scholar_cluster_id: '18059397754238705574'
+  publication_date: '2019-04-23'
+
+container:
+  url: https://github.com/huidongchen/TI_STREAM
+  docker: dynverse/ti_stream
+
+wrapper:
+  type: trajectory
+  topology_inference: parameter
+  trajectory_types:
+  - linear
+  - bifurcation
+  - multifurcation
+  - binary_tree
+  - tree
+  input_required: counts
+  input_optional: root
+
+parameters:
+  - id: log2
+    description: perform log2 transformation
+    type: logical
+    default: yes
+  - id: norm
+    description: normalize data based on library size
+    type: logical
+    default: yes
+  - id: loess_frac
+    description: The fraction of the data used in LOESS regression
+    type: numeric
+    default: 0.01
+  - id: nb_pct
+    description: The percentage of neighbor cells
+    type: numeric
+    default: 0.1
+  - id: method
+    description: Method used for dimension reduction.
+    type: str
+    default: 'mlle'
+  - id: n_components
+    description: Number of components to keep.
+    type: int
+    default: 2
+  - id: clustering
+    description: clustering method used to infer the initial nodes.
+    type: str
+    default: 'kmeans'
+  - id: n_clusters
+    description: Number of clusters
+    type: integer
+    default: 10
+  - id: epg_alpha
+    description: alpha parameter of the penalized elastic energy.
+    type: numeric
+    default: 0.02
+  - id: disable_EPG_optimize
+    description: disable optimizing branching
+    type: logical
+    default: no
+  - id: disable_EPG_ext
+    description: disable extending leaves with additional nodes
+    type: logical
+    default: no
+  - id: root
+    description: root node for subwaymap_plot and stream_plot
+    type: str
+    default: 'S0'    
+  - id: n_jobs
+    description: The number of parallel jobs to run
+    type: integer
+    default: 5
+  - id: save_fig
+    description: if True,save the figure to pdf files.
+    type: logical
+    default: no  
